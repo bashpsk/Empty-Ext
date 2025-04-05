@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.kotlin.serialization)
-    id("maven-publish")
+//    id("maven-publish")
 }
 
 android {
@@ -72,17 +72,18 @@ dependencies {
     implementation(libs.kotlinx.datetime)
 }
 
+/*
 publishing {
 
     publications {
 
         create<MavenPublication>("mavenJava") {
 
-            groupId = "io.github.bashpsk"
+            groupId = "io.bashpsk"
             artifactId = "empty-ext"
-            version = "1.0.0"
+            version = "0.0.1"
 
             artifact("${layout.buildDirectory}/outputs/aar/${artifactId}-release.aar")
         }
     }
-}
+}*/
