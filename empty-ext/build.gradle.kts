@@ -44,11 +44,6 @@ android {
 
         jvmTarget = "11"
     }
-
-    publishing {
-
-        singleVariant("release")
-    }
 }
 
 dependencies {
@@ -77,20 +72,17 @@ dependencies {
     implementation(libs.kotlinx.datetime)
 }
 
-afterEvaluate {
+publishing {
 
-    publishing {
+    publications {
 
-        publications {
+        create<MavenPublication>("mavenJava") {
 
-            create<MavenPublication>("mavenJava") {
+            groupId = "io.github.bashpsk"
+            artifactId = "empty-ext"
+            version = "1.0.0"
 
-                groupId = "io.github.bashpsk"
-                artifactId = "empty-ext"
-                version = "1.0.0"
-
-                from(components["release"])
-            }
+            artifact("${layout.buildDirectory}/outputs/aar/${artifactId}-release.aar")
         }
     }
 }
