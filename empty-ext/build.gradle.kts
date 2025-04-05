@@ -44,6 +44,14 @@ android {
 
         jvmTarget = "11"
     }
+
+    publishing {
+
+        singleVariant("release") {
+
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
@@ -76,11 +84,16 @@ publishing {
 
     publications {
 
-        create<MavenPublication>("maven") {
+        register<MavenPublication>("release") {
 
             groupId = "io.bashpsk"
             artifactId = "empty-ext"
-            version = "1.0.0"
+            version = "1.0.3"
+
+            afterEvaluate {
+
+                from(components["release"])
+            }
         }
     }
 }
