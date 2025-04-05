@@ -1,5 +1,3 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-
 plugins {
 
     alias(libs.plugins.android.library)
@@ -78,28 +76,11 @@ publishing {
 
     publications {
 
-        create<MavenPublication>("release") {
+        create<MavenPublication>("maven") {
 
             groupId = "io.bashpsk"
             artifactId = "empty-ext"
-            version = "0.0.1"
-
-            artifact("${layout.buildDirectory.asFile.get()}/outputs/aar/empty-ext-release.aar")
-        }
-    }
-
-    repositories {
-
-        maven {
-
-            name = "GithubPackages"
-            url = uri("https://maven.pkg.github.com/bashpsk/empty-ext")
-
-            credentials {
-
-                username = gradleLocalProperties(rootDir, providers).getProperty("GITHUB_USER")
-                password = gradleLocalProperties(rootDir, providers).getProperty("GITHUB_TOKEN")
-            }
+            version = "1.0.1"
         }
     }
 }
