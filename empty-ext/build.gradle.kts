@@ -80,7 +80,7 @@ publishing {
 
             groupId = "io.bashpsk"
             artifactId = "empty-ext"
-            version = "1.0.1"
+            version = "1.0.0"
         }
     }
 }
