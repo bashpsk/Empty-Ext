@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.kotlin.serialization)
-//    id("maven-publish")
+    id("maven-publish")
 }
 
 android {
@@ -72,7 +72,6 @@ dependencies {
     implementation(libs.kotlinx.datetime)
 }
 
-/*
 publishing {
 
     publications {
@@ -83,7 +82,22 @@ publishing {
             artifactId = "empty-ext"
             version = "0.0.1"
 
-            artifact("${layout.buildDirectory}/outputs/aar/${artifactId}-release.aar")
+            artifact("${layout.buildDirectory}/outputs/aar/empty-ext-release.aar")
         }
     }
-}*/
+
+    repositories {
+
+        maven {
+
+            name = "GithubPackages"
+            url = uri("https://maven.pkg.github.com/bashpsk/empty-ext")
+
+            credentials {
+
+                username = project.findProperty("GITHUB_USER")?.toString() ?: ""
+                password = project.findProperty("GITHUB_TOKEN")?.toString() ?: ""
+            }
+        }
+    }
+}
