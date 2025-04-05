@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
 
     alias(libs.plugins.android.library)
@@ -76,13 +78,13 @@ publishing {
 
     publications {
 
-        create<MavenPublication>("mavenJava") {
+        create<MavenPublication>("release") {
 
             groupId = "io.bashpsk"
             artifactId = "empty-ext"
             version = "0.0.1"
 
-            artifact("${layout.buildDirectory}/outputs/aar/empty-ext-release.aar")
+            artifact("${layout.buildDirectory.asFile.get()}/outputs/aar/empty-ext-release.aar")
         }
     }
 
@@ -95,8 +97,8 @@ publishing {
 
             credentials {
 
-                username = project.findProperty("GITHUB_USER")?.toString() ?: ""
-                password = project.findProperty("GITHUB_TOKEN")?.toString() ?: ""
+                username = gradleLocalProperties(rootDir, providers).getProperty("GITHUB_USER")
+                password = gradleLocalProperties(rootDir, providers).getProperty("GITHUB_TOKEN")
             }
         }
     }
